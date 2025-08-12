@@ -1,0 +1,48 @@
+---
+import FeatureItem from './FeatureItem.astro';
+import { Waypoints, NotebookPen, CalendarClock, UsersRound } from '@lucide/astro';
+
+type Feature = { title: string; description: string; Icon: any };
+
+
+const features: Feature[] = [
+  {
+    title: 'Organized Conversations',
+    description: `Create dedicated topics for important discussions that won't get lost in daily message noise`,
+    Icon: Waypoints,
+  },
+  {
+    title: 'Shared Task Management',
+    description: 'Assign, track, and complete family todos with clear ownership and accountability',
+    Icon: NotebookPen,
+  },
+  {
+    title: 'Unified Family Calendar',
+    description: 'Keep everyone synchronized with shared schedules, events, and automated reminders',
+    Icon: CalendarClock,
+  },
+  {
+    title: 'Flexible Family Structure',
+    description: 'Works for any family dynamic—nuclear, blended, co-parenting, or extended families',
+    Icon: UsersRound,
+  },
+];
+---
+
+<section id="why-v3" class="py-24 border-t border-stone-200/70">
+  <div class="mx-auto max-w-5xl">
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="text-xs uppercase tracking-[0.2em] text-stone-500 mb-2">Features</div>
+      <h2 class="font-serif text-4xl md:text-5xl tracking-tight">Why Use Family Hubble</h2>
+      <p class="mt-4 text-stone-700 md:text-lg">
+        Keep the people who matter most top‑of‑mind. Organize details, remember milestones, and stay effortlessly connected.
+      </p>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-14">
+      {features.map((feature: Feature) => (
+        <FeatureItem title={feature.title} description={feature.description} Icon={feature.Icon} />
+      ))}
+    </div>
+  </div>
+</section>

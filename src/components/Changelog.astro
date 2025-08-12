@@ -1,0 +1,29 @@
+---
+const entries = [
+  { date: "Aug 21, 2024", title: "Stability and Performance improvements", href: "#" },
+  { date: "Aug 21, 2024", title: "Stability and Performance improvements", href: "#" },
+  { date: "Aug 14, 2024", title: "Approvers Reject and Approve, Contextual Comments and Editor Updates", href: "#" },
+  { date: "Aug 14, 2024", title: "Approvers Reject and Approve, Contextual Comments and Editor Updates", href: "#" },
+  { date: "Aug 7, 2024", title: "eSigning, Template Generator and Creator Update", href: "#" },
+  { date: "Aug 7, 2024", title: "eSigning, Template Generator and Creator Update", href: "#" },
+  { date: "Aug 1, 2024", title: "Introducing Startup Framer Template", href: "#" },
+  { date: "Aug 1, 2024", title: "Introducing Startup Framer Template", href: "#" },
+];
+---
+<section id="crafted" class="py-16 border-t border-stone-200/70">
+  <div class="text-center max-w-2xl mx-auto">
+    <h2 class="font-serif text-3xl tracking-tight">Crafted with care</h2>
+    <a href="#" class="mt-2 inline-block text-sm text-stone-600 hover:text-stone-900">Read the Changelog</a>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 bg-white/40 rounded-xl overflow-hidden">
+    {entries.map((item) => (
+      <div class="p-5">
+        <div class="text-xs text-stone-600">{item.date}</div>
+        <h3 class="mt-1 font-medium">
+          <a href={item.href} class="hover:underline">{item.title}</a>
+        </h3>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,11 +1,49 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import WhyUseFamilyHubbleV3 from '../components/WhyUseFamilyHubbleV3.astro';
+import Changelog from '../components/Changelog.astro';
+import Testimonials from '../components/Testimonials.astro';
 ---
 
 <Layout>
-	<Welcome />
+  <main class="mx-auto max-w-7xl px-6">
+    <!-- Hero -->
+    <section class="pt-16 pb-12 md:pt-24 md:pb-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1 class="text-4xl md:text-6xl font-serif tracking-tight">
+          Your family convos deserve <span class="text-[#fb8500]">better</span> than group texts
+        </h1>
+        <p class="mt-5 text-stone-700 max-w-lg mx-auto">
+          Family Hubble transforms chaotic family texts into organized conversations, shared tasks, and clear decisions; all in one dedicated space
+        </p>
+        <div class="mt-7 flex items-center justify-center gap-3">
+          <a id="cta" href="#" class="rounded-md bg-[#023047] px-4 py-2 text-white font-semibold hover:bg-[#023047]/80">Join Private Beta</a>
+        </div>
+      </div>
+      <!-- Hero image placeholder using stock photo -->
+      <div class="mt-12 md:mt-16">
+        <img
+          src="https://framerusercontent.com/images/rWMUml37wCMut1qDm4ATOik1HU.jpg"
+          alt="Collaboration dashboard placeholder"
+          class="w-full rounded-xl border border-stone-200 shadow-sm"
+          loading="lazy"
+        />
+      </div>
+    </section>
+
+    <WhyUseFamilyHubbleV3 />
+
+    <!-- Social proof / Testimonials (static, no slider) -->
+    <!-- <Testimonials /> -->
+
+    <!-- Changelog teaser -->
+    <!-- <Changelog /> -->
+
+    <!-- CTA Footer -->
+    <section class="py-20 border-t border-stone-200/70 text-center">
+      <h2 class="font-serif text-5xl tracking-tight">Let’s build together</h2>
+      <p class="mt-2 text-stone-700">We’re sending out invites soon.</p>
+      <a href="#" class="mt-6 inline-block rounded-md bg-[#023047] px-4 py-2 text-white font-medium hover:bg-[#023047]/80">Join Private Beta</a>
+    </section>
+  </main>
 </Layout>
