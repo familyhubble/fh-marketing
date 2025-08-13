@@ -1,0 +1,277 @@
+---
+import FullPageLayout from '../layouts/FullPageLayout.astro';
+import { actions } from 'astro:actions';
+export const prerender = false;
+const result = Astro.getActionResult(actions.privateBetaSignup);
+const data = result?.data ?? null;
+const fieldErrors = data?.fieldErrors ?? {};
+const values = data?.values ?? {};
+
+function asString(value: unknown): string {
+  return typeof value === 'string' ? value : '';
+}
+---
+
+<FullPageLayout>
+  <div
+    class="container mx-auto flex w-full flex-col justify-center md:h-[100vh]"
+  >
+    <section class="px-4 py-12">
+      <div class="mx-auto max-w-3xl">
+        <div class="mb-8">
+          <h1 class="font-serif text-2xl tracking-tight md:text-4xl">
+            Request access to the private beta
+          </h1>
+        </div>
+
+        {
+          data?.success && (
+            <p class="text-lg">You're in! We'll be in touch soon.</p>
+          )
+        }
+
+        {
+          data && data.success === false && (
+            <div
+              class="mb-6 rounded border border-red-300 bg-red-50 px-4 py-3 text-red-800"
+              role="alert"
+            >
+              <p class="font-medium">
+                {data.status === 422
+                  ? 'Please fix the errors below.'
+                  : data.message}
+              </p>
+              {data.status === 422 && (
+                <ul class="mt-2 list-disc pl-5">
+                  {Object.entries(fieldErrors).flatMap(([key, messages]) =>
+                    messages.map((msg) => (
+                      <li>{key !== '_global' ? `${key}: ${msg}` : msg}</li>
+                    )),
+                  )}
+                </ul>
+              )}
+            </div>
+          )
+        }
+
+        {
+          (!data || data.success === false) && (
+            <form
+              method="POST"
+              action={actions.privateBetaSignup}
+              class="grid gap-6 md:grid-cols-2"
+              novalidate
+            >
+              {/* Honeypot and time trap */}
+              <div class="sr-only" aria-hidden="true">
+                <label for="company">Company</label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+              <input
+                type="hidden"
+                name="renderedAt"
+                value={Date.now().toString()}
+              />
+
+              <div class="flex flex-col">
+                <label for="FirstName" class="mb-1 font-medium">
+                  First name
+                </label>
+                <input
+                  id="FirstName"
+                  name="FirstName"
+                  type="text"
+                  autocomplete="given-name"
+                  value={asString(values?.FirstName)}
+                  aria-invalid={fieldErrors?.FirstName ? 'true' : 'false'}
+                  aria-describedby={
+                    fieldErrors?.FirstName ? 'FirstName-error' : undefined
+                  }
+                  class="rounded border border-gray-300 bg-white px-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+                />
+                {fieldErrors?.FirstName && (
+                  <p id="FirstName-error" class="mt-1 text-sm text-red-700">
+                    {fieldErrors.FirstName[0]}
+                  </p>
+                )}
+              </div>
+
+              <div class="flex flex-col">
+                <label for="LastName" class="mb-1 font-medium">
+                  Last name
+                </label>
+                <input
+                  id="LastName"
+                  name="LastName"
+                  type="text"
+                  autocomplete="family-name"
+                  value={asString(values?.LastName)}
+                  aria-invalid={fieldErrors?.LastName ? 'true' : 'false'}
+                  aria-describedby={
+                    fieldErrors?.LastName ? 'LastName-error' : undefined
+                  }
+                  class="rounded border border-gray-300 bg-white px-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+                />
+                {fieldErrors?.LastName && (
+                  <p id="LastName-error" class="mt-1 text-sm text-red-700">
+                    {fieldErrors.LastName[0]}
+                  </p>
+                )}
+              </div>
+
+              <div class="flex flex-col md:col-span-2">
+                <label for="EmailAddress" class="mb-1 font-medium">
+                  Email address
+                </label>
+                <input
+                  id="EmailAddress"
+                  name="EmailAddress"
+                  type="email"
+                  autocomplete="email"
+                  value={asString(values?.EmailAddress)}
+                  aria-invalid={fieldErrors?.EmailAddress ? 'true' : 'false'}
+                  aria-describedby={
+                    fieldErrors?.EmailAddress ? 'EmailAddress-error' : undefined
+                  }
+                  class="rounded border border-gray-300 bg-white px-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+                />
+                {fieldErrors?.EmailAddress && (
+                  <p id="EmailAddress-error" class="mt-1 text-sm text-red-700">
+                    {fieldErrors.EmailAddress[0]}
+                  </p>
+                )}
+              </div>
+
+              <div class="flex flex-col">
+                <label for="primaryDevice" class="mb-1 font-medium">
+                  Primary mobile device
+                </label>
+                <select
+                  id="primaryDevice"
+                  name="primaryDevice"
+                  value={asString(values?.primaryDevice)}
+                  aria-invalid={fieldErrors?.primaryDevice ? 'true' : 'false'}
+                  aria-describedby={
+                    fieldErrors?.primaryDevice
+                      ? 'primaryDevice-error'
+                      : undefined
+                  }
+                  class="rounded border border-gray-300 bg-white px-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+                >
+                  <option value="" disabled>
+                    Select a mobile device
+                  </option>
+                  <option value="iPhone">iPhone</option>
+                  <option value="Android phone">Android</option>
+                  <option value="Other">Other</option>
+                </select>
+                {fieldErrors?.primaryDevice && (
+                  <p id="primaryDevice-error" class="mt-1 text-sm text-red-700">
+                    {fieldErrors.primaryDevice[0]}
+                  </p>
+                )}
+              </div>
+
+              <div class="flex flex-col">
+                <label for="childrenCount" class="mb-1 font-medium">
+                  Number of children
+                </label>
+                <input
+                  id="childrenCount"
+                  name="childrenCount"
+                  type="number"
+                  inputmode="numeric"
+                  min="0"
+                  step="1"
+                  value={asString(values?.childrenCount)}
+                  aria-invalid={fieldErrors?.childrenCount ? 'true' : 'false'}
+                  aria-describedby={
+                    fieldErrors?.childrenCount
+                      ? 'childrenCount-error'
+                      : undefined
+                  }
+                  class="rounded border border-gray-300 bg-white px-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+                />
+                {fieldErrors?.childrenCount && (
+                  <p id="childrenCount-error" class="mt-1 text-sm text-red-700">
+                    {fieldErrors.childrenCount[0]}
+                  </p>
+                )}
+              </div>
+
+              <div class="flex flex-col md:col-span-2">
+                <label for="maritalStatus" class="mb-1 font-medium">
+                  Marital status
+                </label>
+                <select
+                  id="maritalStatus"
+                  name="maritalStatus"
+                  value={asString(values?.maritalStatus)}
+                  aria-invalid={fieldErrors?.maritalStatus ? 'true' : 'false'}
+                  aria-describedby={
+                    fieldErrors?.maritalStatus
+                      ? 'maritalStatus-error'
+                      : undefined
+                  }
+                  class="rounded border border-gray-300 bg-white px-3 py-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+                >
+                  <option value="" disabled>
+                    Select status
+                  </option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Widowed">Widowed</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+                {fieldErrors?.maritalStatus && (
+                  <p id="maritalStatus-error" class="mt-1 text-sm text-red-700">
+                    {fieldErrors.maritalStatus[0]}
+                  </p>
+                )}
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="inline-flex items-center">
+                  <input
+                    id="mobileInterest"
+                    name="mobileInterest"
+                    type="checkbox"
+                    checked={asString(values?.mobileInterest) === 'on'}
+                    class="h-4 w-4 rounded border-gray-300 bg-white text-blue-600 focus:ring-blue-500"
+                  />
+                  <span class="ml-2">
+                    I'm interested in the mobile app beta
+                  </span>
+                </label>
+                {fieldErrors?.mobileInterest && (
+                  <p
+                    id="mobileInterest-error"
+                    class="mt-1 text-sm text-red-700"
+                  >
+                    {fieldErrors.mobileInterest[0]}
+                  </p>
+                )}
+              </div>
+
+              <div class="md:col-span-2">
+                <button
+                  type="submit"
+                  class="w-full rounded bg-[#023047] px-4 py-3 font-semibold text-white transition hover:bg-[#023047]/80 focus:ring-2 focus:ring-[#023047]/50 focus:outline-none md:w-auto"
+                >
+                  Request access
+                </button>
+              </div>
+            </form>
+          )
+        }
+      </div>
+    </section>
+  </div>
+</FullPageLayout>

@@ -1,0 +1,25 @@
+---
+import famImg from "../assets/family-01.jpg";
+import BaseLayout from './BaseLayout.astro';
+---
+
+<BaseLayout>
+  <main>
+    <div class="flex h-full w-full flex-col md:flex-row">
+      <aside class="relative flex w-full items-center justify-center bg-white py-4 md:w-2/5 md:py-0">
+        <div class="flex items-center gap-x-4 md:absolute md:top-10 md:left-12">
+          <h1 class="text-primary font-logo m-auto block text-5xl italic">
+            fh
+          </h1>
+          <span class="text-lg">Family Hubble</span>
+        </div>
+        <img class="hidden w-2/5 md:block md:w-full" src={famImg.src} alt="" />
+      </aside>
+      <div class="bg-[#ffb703] relative flex h-full grow items-center overflow-auto md:px-16">
+        <div class="w-full md:h-[100vh]">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
