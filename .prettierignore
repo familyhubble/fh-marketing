@@ -23,6 +23,7 @@ pnpm-debug.log*
 # Generated files
 *.gen.ts
 *.generated.ts
+astro-actions.d.ts
 
 # OS files
 .DS_Store
