@@ -1,8 +1,7 @@
 import { defineAction } from 'astro:actions';
 
-const emailOctopusApiKey =
-  'eo_9bfbb70759191a3fc86575463ceb5fb9787a67865ff5c3c166d4139036068d36';
-const listId = 'f71c12ba-7779-11f0-b24f-493cf058abf7';
+const emailOctopusApiKey = import.meta.env.EMAIL_API_KEY;
+const listId = import.meta.env.LIST_ID;
 
 export const server = {
   privateBetaSignup: defineAction({
