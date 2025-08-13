@@ -26,7 +26,16 @@ function asString(value: unknown): string {
 
         {
           data?.success && (
-            <p class="text-lg">You're in! We'll be in touch soon.</p>
+            <>
+              <p class="text-lg">You're in! We'll be in touch soon.</p>
+              <a
+                id="cta"
+                href="/"
+                class="mt-4 inline-block rounded-md bg-[#023047] px-4 py-2 font-semibold text-white hover:bg-[#023047]/80"
+              >
+                Go back to the home page
+              </a>
+            </>
           )
         }
 
