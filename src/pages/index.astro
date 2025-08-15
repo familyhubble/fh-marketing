@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import WhyUseFamilyHubbleV3 from '../components/WhyUseFamilyHubbleV3.astro';
 import Changelog from '../components/Changelog.astro';
 import Testimonials from '../components/Testimonials.astro';
+import HeroBackground from '../assets/hero-background.jpg';
 ---
 
 <Layout>
@@ -33,7 +34,7 @@ import Testimonials from '../components/Testimonials.astro';
       <!-- Hero image placeholder using stock photo -->
       <div class="mt-12 md:mt-16">
         <img
-          src="https://framerusercontent.com/images/rWMUml37wCMut1qDm4ATOik1HU.jpg"
+          src={HeroBackground.src}
           alt="Collaboration dashboard placeholder"
           class="w-full rounded-xl border border-stone-200 shadow-sm"
           loading="lazy"
