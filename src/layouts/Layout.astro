@@ -2,24 +2,28 @@
 import FhLogo from '../assets/fh-icon.png';
 import Footer from '../components/Footer.astro';
 import BaseLayout from './BaseLayout.astro';
-import '../styles/global.css'
+import '../styles/global.css';
 ---
 
 <BaseLayout>
-	<header class="border-b border-stone-200/60 bg-stone-50/70 backdrop-blur">
-		<div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-			<a href="/" class="flex items-center gap-2">
-				<img src={FhLogo.src} alt="Family Hubble Logo" class="h-10 w-10" />
-				<span class="font-semibold tracking-tight">Family Hubble</span>
-			</a>
-			<nav class="hidden md:flex items-center gap-8 text-sm text-stone-700">
-				<!-- <a href="#" class="hover:text-stone-900">Changelog</a> -->
-				<!-- <a href="#" class="hover:text-stone-900">Blog</a> -->
-				<a href="#" class="hover:text-stone-900">Log in</a>
-				<a href="#cta" class="rounded-md bg-[#023047] px-3 py-2 font-medium text-white hover:bg-[#023047]/80">Join Private Beta</a>
-			</nav>
-		</div>
-	</header>
-	<slot />
-	<Footer />
+  <header class="border-b border-stone-200/60 bg-stone-50/70 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <a href="/" class="flex items-center gap-2">
+        <img src={FhLogo.src} alt="Family Hubble Logo" class="h-10 w-10" />
+        <span class="font-semibold tracking-tight">Family Hubble</span>
+      </a>
+      <nav class="hidden items-center gap-8 text-sm text-stone-700 md:flex">
+        <!-- <a href="#" class="hover:text-stone-900">Changelog</a> -->
+        <!-- <a href="#" class="hover:text-stone-900">Blog</a> -->
+        <!-- <a href="#" class="hover:text-stone-900">Log in</a> -->
+        <a
+          href="#cta"
+          class="rounded-md bg-[#023047] px-3 py-2 font-medium text-white hover:bg-[#023047]/80"
+          >Join Private Beta</a
+        >
+      </nav>
+    </div>
+  </header>
+  <slot />
+  <Footer />
 </BaseLayout>
