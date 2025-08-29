@@ -1,15 +1,3 @@
-## Playwright screenshots
-
-If you have Python 3 available, you can capture desktop and mobile screenshots of the site and the "Crafted with care" section while `astro dev` is running at `http://localhost:4321`:
-
-```bash
-python3 -m pip install --user playwright
-python3 -m playwright install chromium
-python3 scripts/snapshots.py
-```
-
-Screenshots will be saved into `playwright-snapshots/`.
-
 # Astro Starter Kit: Basics
 
 ```sh
@@ -53,6 +41,14 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Playwright screenshots
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+If you have Python 3 available, you can capture desktop and mobile screenshots of the site and the "Crafted with care" section while `astro dev` is running at `http://localhost:4321`:
+
+```bash
+python3 -m pip install --user playwright
+python3 -m playwright install chromium
+python3 scripts/snapshots.py
+```
+
+Screenshots will be saved into `playwright-snapshots/`.
